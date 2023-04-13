@@ -2,6 +2,8 @@ version: '3.3'
 services:
   dbserver:
     image: mysql:8.0
+    labels:
+      ho.ctf.cyrhades: dbserver
     restart: always
     expose:
       - 3306
@@ -13,8 +15,10 @@ services:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     container_name: ho-dbserver
-  webserver-1:
+  webserver:
     build: server_1/
+    labels:
+      ho.ctf.cyrhades: webserver
     ports:
       - "80:80"
     container_name: ho-webserver
