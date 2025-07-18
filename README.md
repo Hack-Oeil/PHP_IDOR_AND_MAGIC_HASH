@@ -11,7 +11,7 @@ vous devriez réussir à vous connecter sans connaitre le mot de passe, comme pa
 
 
 ## Aperçu
-![infos/capture.jpg](infos/capture.jpg)
+![presentation/assets/images/capture.jpg](presentation/assets/images/capture.jpg)
 
 
 -----------

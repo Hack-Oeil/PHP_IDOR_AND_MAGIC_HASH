@@ -1,28 +1,27 @@
-version: '3.3'
 services:
   dbserver:
     image: mysql:8.0
     labels:
-      ho.ctf.cyrhades: dbserver
+      ho.ctf.cyrhades: "1"
     restart: always
     expose:
       - 3306
     environment:
       - MYSQL_ROOT_PASSWORD=password123
       - MYSQL_DATABASE=agence_immo
-
     volumes:
-      - db:/var/lib/mysql
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-    container_name: ho-dbserver
+      - ./.docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
   webserver:
-    build: server_1/
+    build: ./.docker/server_http
     labels:
-      ho.ctf.cyrhades: webserver
+      ho.ctf.cyrhades: "1"
     ports:
-      - "80:80"
-    container_name: ho-webserver
+      - ${PORT}:80
+    environment:
+      - HOOS_CTF_USERNAME=${HOOS_CTF_USERNAME:-}
     depends_on:
       - dbserver
 volumes:
   db:
+    labels:
+      ho.ctf.cyrhades: "1"
