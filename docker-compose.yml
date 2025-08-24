@@ -1,27 +1,35 @@
 services:
-  dbserver:
+  db:
     image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: superSqlPassw0rD
+      MYSQL_DATABASE: agence_immo
+      MYSQL_USER: immo_user
+      MYSQL_PASSWORD: simpleSqlPass
+    volumes:
+      - ./.docker/db/init.sql:/docker-entrypoint-initdb.d
     labels:
       ho.ctf.cyrhades: "1"
-    restart: always
-    expose:
-      - 3306
+  ho-webserver:
+    build:
+      context: ./.docker/server_http
     environment:
-      - MYSQL_ROOT_PASSWORD=password123
-      - MYSQL_DATABASE=agence_immo
-    volumes:
-      - ./.docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
-  webserver:
-    build: ./.docker/server_http
+      - HOOS_CTF_USERNAME=${HOOS_CTF_USERNAME:-}
     labels:
       ho.ctf.cyrhades: "1"
     ports:
       - ${PORT}:80
-    environment:
-      - HOOS_CTF_USERNAME=${HOOS_CTF_USERNAME:-}
+    restart: always
     depends_on:
-      - dbserver
+      - db
+  composer:
+    image: composer
+    volumes:
+      - web:/app
+    command: composer install --ignore-platform-reqs
 volumes:
-  db:
+  web:
     labels:
       ho.ctf.cyrhades: "1"
