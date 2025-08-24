@@ -35,24 +35,15 @@ class HomeController extends AbstractController
                 !empty($_POST['password']) && is_string($_POST['password'])
             ) {
                 $user = $this->getRepository('User')->findOneBy(['username' => $_POST['username']]);
-                if($user) {
+                if($user) {                    
                     if(SHA1($_POST['password']) == $user->getPassword()) {
                         $this->connectUser($user);
-                        return $this->redirectToRoute("/"); 
+                        return $this->redirectToRoute(str_replace("connexion","", $_SERVER["HTTP_REFERER"])); 
                     }
                 }
             }
         } 
         return $this->render('auth', ["error" => "Echec d'authentification."]);        
-    }
-
-
-    public function forgot_password() 
-    {
-        // si authentifié on ne peut plus venir ici
-        if($this->isAuthenticated()) return $this->redirectToRoute("/"); 
-
-        return $this->render('forgot_password');
     }
 
     public function profil() 

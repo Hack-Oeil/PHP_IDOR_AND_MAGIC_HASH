@@ -9,7 +9,7 @@
           {% endif %}
           <span>Vous pouvez vous connecter avec les identifiants : <strong>guest / guest</strong></span>
             <div class="container d-flex align-items-center justify-content-center">
-                <form class="p-4 p-md-5 border rounded-3 bg-light" action="" method="post">
+                <form class="p-4 p-md-5 border rounded-3 bg-light" action="{{ absolute_url("/") }}connexion" method="post">
                     <h2 class="mb-4">Connexion</h2>
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control" id="username" name="username" placeholder="Nom d'utilisateur" required>
@@ -24,10 +24,6 @@
                       <label class="form-check-label" for="rememberMe">Se souvenir de moi (en vrai je m'en souviendrais pas)</label>
                     </div>
                     <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter</button>
-                    <hr class="my-4">
-                    <div class="text-center">
-                      <a href="/forgot_password">Mot de passe oublié ?</a>
-                    </div>
                   </form>
             </div>
         </div>
