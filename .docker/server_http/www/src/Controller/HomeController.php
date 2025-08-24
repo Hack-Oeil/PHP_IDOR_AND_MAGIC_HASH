@@ -38,7 +38,9 @@ class HomeController extends AbstractController
                 if($user) {                    
                     if(SHA1($_POST['password']) == $user->getPassword()) {
                         $this->connectUser($user);
-                        return $this->redirectToRoute(str_replace("connexion","", $_SERVER["HTTP_REFERER"])); 
+                        // permet de fonctionner avec le proxy provisoire en attendant une correction "saine"
+                        return $this->print();
+                        // return $this->redirectToRoute(str_replace("connexion","", $_SERVER["HTTP_REFERER"])); 
                     }
                 }
             }
