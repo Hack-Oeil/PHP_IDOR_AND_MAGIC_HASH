@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/x-icon" href="{{ absolute_url("/") }}favicon.ico">
-        <link rel="stylesheet" href="{{ absolute_url("/") }}assets/css/fa_6.4.0.all.min.css">
-        <link rel="stylesheet" href="{{ absolute_url("/") }}assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ absolute_url("/") }}assets/css/style.css">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/assets/css/fa_6.4.0.all.min.css">
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
         <title>ToiToiMonToit</title>
     </head>
     <body>
@@ -14,17 +14,17 @@
             <header>
                 <nav class="navbar navbar-light bg-light sticky-top navbar-expand-lg">
                     <div class="container">
-                        <a class="navbar-brand" href="{{ absolute_url("/") }}">
-                            <img class="d-inline-block align-top" src="{{ absolute_url("/") }}assets/images/logo.jpg" width="200" height="90" alt="Logo #{websiteName}">
+                        <a class="navbar-brand" href="/">
+                            <img class="d-inline-block align-top" src="/assets/images/logo.jpg" width="200" height="90" alt="Logo #{websiteName}">
                         </a>
                         <div class="collapse navbar-collapse" id="navbarToggler">
                             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                                <li class="nav-item active"><a class="nav-link" href="{{ absolute_url("/") }}">Accueil</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="/">Accueil</a></li>
                                 {% if app.user %}
-                                <li class="nav-item"><a class="nav-link" href="{{ absolute_url("/") }}profil?id={{app.user.id}}">Voir le profil</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ absolute_url("/") }}deconnexion">Se déconnecter</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/profil?id={{app.user.id}}">Voir le profil</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/deconnexion">Se déconnecter</a></li>
                                 {% else %}
-                                <li class="nav-item"><a class="nav-link" href="{{ absolute_url("/") }}connexion">Se connecter</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/connexion">Se connecter</a></li>
                                 {% endif %}
                             </ul>
                         </div>
